@@ -4,20 +4,20 @@ locals {
     settings = {
       hub_networks = [
         {
-          enabled = false
+          enabled = true
           config = {
-            address_space                = ["10.100.0.0/2", ]
+            address_space                = ["10.42.0.0/22"]
             location                     = "westeurope"
-            link_to_ddos_protection_plan = false
+            link_to_ddos_protection_plan = true
             dns_servers                  = []
             bgp_community                = ""
             subnets                      = []
             virtual_network_gateway = {
-              enabled = false
+              enabled = true
               config = {
-                address_prefix           = "10.100.1.0/24"
-                gateway_sku_expressroute = "ErGw2AZ"
-                gateway_sku_vpn          = ""
+                address_prefix           = "10.42.0.0/24"
+                gateway_sku_expressroute = ""
+                gateway_sku_vpn          = "VpnGw2AZ"
                 advanced_vpn_settings = {
                   enable_bgp                       = null
                   active_active                    = null
@@ -30,12 +30,12 @@ locals {
               }
             }
             azure_firewall = {
-              enabled = false
+              enabled = true
               config = {
-                address_prefix                = "10.100.0.0/24"
+                address_prefix                = "10.42.1.0/24"
                 enable_dns_proxy              = false
                 dns_servers                   = []
-                sku_tier                      = ""
+                sku_tier                      = "premium"
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
@@ -55,9 +55,9 @@ locals {
       ]
       vwan_hub_networks = []
       ddos_protection_plan = {
-        enabled = false
+        enabled = true
         config = {
-          location = coalesce(var.connectivity_resources_location, var.default_location)
+          location = var.connectivity_resources_location
         }
       }
       dns = {
@@ -128,20 +128,17 @@ locals {
             storage_account_table                = false
             storage_account_web                  = false
           }
-          private_link_locations = [
-            "northeurope",
-            "westeurope",
-          ]
+          private_link_locations                                 = concat([var.connectivity_resources_location], [var.default_location])
           public_dns_zones                                       = []
           private_dns_zones                                      = []
-          enable_private_dns_zone_virtual_network_link_on_hubs   = false
-          enable_private_dns_zone_virtual_network_link_on_spokes = false
+          enable_private_dns_zone_virtual_network_link_on_hubs   = true
+          enable_private_dns_zone_virtual_network_link_on_spokes = true
           virtual_network_resource_ids_to_link                   = []
         }
       }
     }
 
-    location = coalesce(var.connectivity_resources_location, var.default_location)
+    location = var.connectivity_resources_location
     tags     = var.connectivity_resources_tags
     advanced = null
   }
