@@ -1,6 +1,10 @@
 terraform {
   backend "azurerm" {}
   required_providers {
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.0"
+    }
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 3.0"
@@ -12,6 +16,8 @@ terraform {
   }
   required_version = "~> 1.0"
 }
+
+provider "azuread" {}
 
 provider "azurerm" {
   subscription_id = var.management_subscription_id

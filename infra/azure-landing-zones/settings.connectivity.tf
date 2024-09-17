@@ -17,7 +17,7 @@ locals {
               config = {
                 address_prefix           = "10.42.0.0/24"
                 gateway_sku_expressroute = ""
-                gateway_sku_vpn          = "VpnGw2AZ"
+                gateway_sku_vpn          = "VpnGw1"
                 advanced_vpn_settings = {
                   enable_bgp                       = null
                   active_active                    = null
@@ -33,9 +33,9 @@ locals {
               enabled = true
               config = {
                 address_prefix                = "10.42.1.0/24"
-                enable_dns_proxy              = false
+                enable_dns_proxy              = true
                 dns_servers                   = []
-                sku_tier                      = "premium"
+                sku_tier                      = "Premium"
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
@@ -61,7 +61,7 @@ locals {
         }
       }
       dns = {
-        enabled = false
+        enabled = true
         config = {
           location = null
           enable_private_link_by_service = {
@@ -132,7 +132,7 @@ locals {
           public_dns_zones                                       = []
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
-          enable_private_dns_zone_virtual_network_link_on_spokes = true
+          enable_private_dns_zone_virtual_network_link_on_spokes = false
           virtual_network_resource_ids_to_link                   = []
         }
       }
@@ -140,6 +140,18 @@ locals {
 
     location = var.connectivity_resources_location
     tags     = var.connectivity_resources_tags
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        # This is necessary because the module deploys a public IP with the basic SKU as default. This is not supported by most VPN Gateway SKUs
+        azurerm_public_ip = {
+          connectivity_vpn = {
+            westeurope = {
+              sku               = "Standard"
+              allocation_method = "Static"
+            }
+          }
+        }
+      }
+    }
   }
 }
