@@ -1,0 +1,9 @@
+---
+name: automation-testing
+subscription_id: 6886105f-edd6-489b-957d-9a90cc849d74
+subscription_type: secure
+virtual_networks:
+  vnet1:
+    address_space:
+      - 10.42.69.0/24
+    hub_peering_enabled: true

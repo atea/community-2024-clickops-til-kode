@@ -1,0 +1,35 @@
+{
+    "secure": {
+      "policy_assignments": [
+        "Deny-Resource-Locations",
+        "Deny-RSG-Locations",
+        "Audit-PeDnsZones",
+        "Deny-HybridNetworking",
+        "Deny-Public-Endpoints",
+        "Deny-Public-IP-On-NIC",
+        "Deploy-Private-DNS-Zones"
+      ],
+      "policy_definitions": [],
+      "policy_set_definitions": [],
+      "role_definitions": [],
+      "archetype_config": {
+        "parameters": {
+          "Deny-Resource-Locations": {
+            "listOfAllowedLocations": [
+              "westeurope",
+              "norwayeast",
+              "norwaywest"
+            ]
+          },
+          "Deny-RSG-Locations": {
+            "listOfAllowedLocations": [
+                "westeurope",
+                "norwayeast",
+                "norwaywest"
+            ]
+          }
+        },
+        "access_control": {}
+      }
+    }
+  }
