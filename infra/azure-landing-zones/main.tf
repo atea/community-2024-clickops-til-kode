@@ -4,7 +4,7 @@ module "azure_landing_zones" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "6.1.0"
 
-  default_location  = "westeurope"
+  default_location  = var.default_location
   disable_telemetry = true
 
   providers = {
@@ -16,6 +16,7 @@ module "azure_landing_zones" {
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
+  library_path   = "${path.module}/lib"
 
   deploy_connectivity_resources    = var.deploy_connectivity_resources
   subscription_id_connectivity     = var.connectivity_subscription_id
@@ -47,6 +48,29 @@ module "azure_landing_zones" {
     }
   }
 
+  custom_landing_zones = {
+    "${var.root_id}-arc" = {
+      display_name               = "Azure Arc"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "arc"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    "${var.root_id}-secure" = {
+      display_name               = "Secure"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "secure"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+  }
+
   subscription_id_overrides = {
     sandboxes = var.sandbox_subscription_ids
   }
@@ -58,7 +82,9 @@ module "azure_landing_zones" {
 }
 
 # Create a group, add owners and members, and assign the Contributor role to the group at the top management group level for Azure Landing Zones
-data "azuread_client_config" "current" {}
+data "azuread_user" "tjs" {
+  user_principal_name = "trond.sjovang_atea.no#EXT#@AteaACfS.onmicrosoft.com"
+}
 
 data "azuread_user" "community_demo" {
   user_principal_name = "community-demo@ateaacfs.onmicrosoft.com"
@@ -69,7 +95,7 @@ resource "azuread_group" "community_demo_contributor" {
   security_enabled = true
 
   owners = [
-    data.azuread_client_config.current.object_id
+    data.azuread_user.tjs.object_id
   ]
 
   members = [

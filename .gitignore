@@ -15,6 +15,8 @@ crash.*.log
 # to change depending on the environment.
 *.tfvars
 *.tfvars.json
+# Make sure our template inputs for the vending machine is included in git
+!custom_landing_zones.auto.tfvars.json
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -39,5 +41,7 @@ terraform.rc
 # Ignore the config backend file
 config.azurerm.tfbackend
 
-# Ignore local azure cli env
+# Ignore local azure cli env and .env files
 .azure
+.*.envrc
+!.envrc
