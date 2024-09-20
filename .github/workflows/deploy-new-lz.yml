@@ -1,0 +1,52 @@
+name: 'Deploy Azure Landing Zones'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - infra/subscription-vending-machine/**
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy:
+    name: 'Deploy Azure Landing Zones'
+    runs-on: ubuntu-latest
+    environment: demo
+
+    defaults:
+      run:
+        working-directory: ./infra/subscription-vending-machine
+        shell: bash
+
+    steps:
+      - name: Checkout repository from GitHub
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Initialize Terraform
+        run: terraform init \
+          -backend-config="subscription_id=${{ vars.MANAGEMENT_SUBSCRIPTION_ID}}" \
+          -backend-config="resource_group_name=${{ vars.BACKEND_RESOURCE_GROUP_NAME }}" \
+          -backend-config="storage_account_name=${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}" \
+          -backend-config="container_name=azure-landing-zones" \
+          -backend-config="key=terraform.tfstate"
+        env:
+          ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ vars.MANAGEMENT_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+
+      - name: Apply changes
+        run: terraform apply -auto-approve -input=false
+        env:
+          TF_VAR_connectivity_subscription_id: ${{ vars.CONNECTIVITY_SUBSCRIPTION_ID }}
