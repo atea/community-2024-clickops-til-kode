@@ -1,0 +1,52 @@
+name: Create new landing zone
+description: Use this form to request a new landing zone in Azure
+title: 'New landing zone: '
+labels: ['landingzone']
+assignees:
+  - sjovang
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Deploy a new Azure Landing Zone with GitHub Actions
+        
+        ## Landing Zone Archetype
+        
+        * `corp`: Internal resources without access from the internet
+        * `online`: For resources that will be accessible from the internet
+        * `secure`: Resources that needs additional protection and security settings
+        * `arc`: For managing on-premises resources with Azure Arc
+
+  - type: dropdown
+    id: archetype
+    attributes:
+      label: archetype
+      description: Which type of Landing Zones do you want to deploy?
+      options:
+        - corp
+        - online
+        - private
+        - arc
+    validations:
+      required: true
+
+  - type: input
+    id: address_space
+    attributes:
+      label: Address Space
+      description: IP address space for virtual network in CIDR format (e.g. 10.0.0.0/24)
+      placeholder: 10.0.0.0/24
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: vnet_peering
+    attributes:
+      label: VNET peering
+      description: Connect the virtual network to the hub
+      options:
+      - label: true
+      - label: false
+    validations:
+      required: true
