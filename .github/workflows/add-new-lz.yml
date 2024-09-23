@@ -40,7 +40,7 @@ jobs:
       with:
         path: 'infra/subscription-vending-machine/landing-zones'
         isAbsolutePath: false
-        file: ${{ steps.issue_title.outputs.title }}.yml
+        file: ${{ steps.issue_title.outputs.title }}.yaml
         content: |
           name: ${{ steps.issue_title.outputs.title }}
           subscription_id: ${{ fromJson(steps.parse_issue.outputs.json).subscription_id }}
