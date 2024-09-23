@@ -1,4 +1,4 @@
-name: 'Lint and verify'
+name: 'Lint and verify - Subscription vending'
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   deploy:
-    name: 'Lint and verify'
+    name: 'Lint and verify - Subscription vending'
     runs-on: ubuntu-latest
     environment: demo
 
