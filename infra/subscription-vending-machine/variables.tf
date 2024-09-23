@@ -4,7 +4,7 @@ variable "connectivity_subscription_id" {
 }
 
 variable "landing_zones" {
-    type = map(any)
-    default = {}
-    description = "Map of landing zones to deploy"
+  type        = map(any)
+  default     = {}
+  description = "Map of landing zones to deploy"
 }
