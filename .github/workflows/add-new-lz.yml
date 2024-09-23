@@ -38,7 +38,7 @@ jobs:
     - name: Create config
       uses: 1arp/create-a-file-action@0.4.5
       with:
-        path: 'landing-zones'
+        path: 'infra/subscription-vending-machine/landing-zones'
         isAbsolutePath: false
         file: ${{ steps.issue_title.outputs.title }}.yml
         content: |
