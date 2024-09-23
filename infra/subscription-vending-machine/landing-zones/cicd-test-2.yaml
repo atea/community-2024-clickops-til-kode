@@ -1,0 +1,8 @@
+name: cicd-test-2
+subscription_id: 597cb310-3a01-4ea8-85ef-90319b02ac21
+subscription_type: secure
+virtual_networks:
+  vnet1:
+    address_space:
+      - 10.32.16.0/24
+    hub_peering_enabled: true
