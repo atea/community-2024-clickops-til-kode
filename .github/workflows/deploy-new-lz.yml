@@ -1,4 +1,4 @@
-name: 'Deploy Azure Landing Zones'
+name: 'Deploy new landing zone'
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   deploy:
-    name: 'Deploy Azure Landing Zones'
+    name: 'Deploy new landing zone'
     runs-on: ubuntu-latest
     environment: demo
 
@@ -35,11 +35,7 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init \
-          -backend-config="subscription_id=${{ vars.MANAGEMENT_SUBSCRIPTION_ID}}" \
-          -backend-config="resource_group_name=${{ vars.BACKEND_RESOURCE_GROUP_NAME }}" \
-          -backend-config="storage_account_name=${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}" \
-          -backend-config="container_name=azure-landing-zones" \
-          -backend-config="key=terraform.tfstate"
+          -backend-config="subscription_id=${{ vars.MANAGEMENT_SUBSCRIPTION_ID}}" -backend-config="resource_group_name=${{ vars.BACKEND_RESOURCE_GROUP_NAME }}" -backend-config="storage_account_name=${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}" -backend-config="container_name=azure-landing-zones" -backend-config="key=terraform.tfstate"
         env:
           ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
