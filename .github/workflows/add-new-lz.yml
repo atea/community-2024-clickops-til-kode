@@ -4,8 +4,6 @@ on:
   issues:
     types:
       - labeled
-      - opened
-      - reopened
 
   workflow_dispatch:
 
@@ -15,6 +13,7 @@ permissions:
   issues: read
 
 jobs:
+  if: github.event.label.name == 'landingzone'
   create_pr:
     name: Create PR for new landing zone
     runs-on: ubuntu-latest
