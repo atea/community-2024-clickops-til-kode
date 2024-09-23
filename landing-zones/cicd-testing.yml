@@ -1,0 +1,8 @@
+name: cicd-testing
+subscription_id: e755f472-9b69-43be-8f61-d4d259713b80
+subscription_type: online
+virtual_networks:
+  vnet1:
+    address_space:
+      - 10.69.42.0/24
+    hub_peering_enabled: false
