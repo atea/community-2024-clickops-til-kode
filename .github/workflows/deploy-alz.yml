@@ -54,5 +54,5 @@ jobs:
           TF_VAR_connectivity_subscription_id: ${{ vars.CONNECTIVITY_SUBSCRIPTION_ID }}
           TF_VAR_identity_subscription_id: ${{ vars.IDENTITY_SUBSCRIPTION_ID }}
           TF_VAR_management_subscription_id: ${{ vars.MANAGEMENT_SUBSCRIPTION_ID }}
-          TF_VAR_security_alerts_email: ${{ vars.SECURITY_ALERTS_EMAIL }}
+          TF_VAR_security_alerts_email_address: ${{ vars.SECURITY_ALERTS_EMAIL }}
           TF_VAR_sandbox_subscription_ids: ${{ vars.SANDBOX_SUBSCRIPTION_IDS }}

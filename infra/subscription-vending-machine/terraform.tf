@@ -2,7 +2,7 @@ terraform {
   backend "azurerm" {}
   required_providers {
     azapi = {
-      source = "Azure/azapi"
+      source  = "Azure/azapi"
       version = "~> 1.0"
     }
     azuread = {
@@ -10,9 +10,9 @@ terraform {
       version = "~> 2.0"
     }
     azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
-      configuration_aliases = [ azurerm.connectivity ]
+      source                = "hashicorp/azurerm"
+      version               = "~> 3.0"
+      configuration_aliases = [azurerm.connectivity]
     }
   }
   required_version = "~> 1.0"
@@ -30,7 +30,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias = "connectivity"
+  alias           = "connectivity"
   subscription_id = var.connectivity_subscription_id
   features {}
 }
