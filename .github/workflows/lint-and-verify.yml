@@ -1,4 +1,4 @@
-name: 'Deploy Azure Landing Zones'
+name: 'Lint and verify'
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   deploy:
-    name: 'Deploy Azure Landing Zones'
+    name: 'Lint and verify'
     runs-on: ubuntu-latest
     environment: demo
 

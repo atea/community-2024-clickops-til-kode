@@ -1,4 +1,4 @@
-name: 'Deploy Azure Landing Zones'
+name: 'Deploy new landing zone'
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   deploy:
-    name: 'Deploy Azure Landing Zones'
+    name: 'Deploy new landing zone'
     runs-on: ubuntu-latest
     environment: demo
 
