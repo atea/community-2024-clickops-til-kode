@@ -34,8 +34,7 @@ jobs:
           terraform_wrapper: false
 
       - name: Initialize Terraform
-        run: terraform init \
-          -backend-config="subscription_id=${{ vars.MANAGEMENT_SUBSCRIPTION_ID}}" -backend-config="resource_group_name=${{ vars.BACKEND_RESOURCE_GROUP_NAME }}" -backend-config="storage_account_name=${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}" -backend-config="container_name=azure-landing-zones" -backend-config="key=terraform.tfstate"
+        run: terraform init -backend-config="subscription_id=${{ vars.MANAGEMENT_SUBSCRIPTION_ID}}" -backend-config="resource_group_name=${{ vars.BACKEND_RESOURCE_GROUP_NAME }}" -backend-config="storage_account_name=${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}" -backend-config="container_name=azure-landing-zones" -backend-config="key=terraform.tfstate"
         env:
           ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -45,4 +44,8 @@ jobs:
       - name: Apply changes
         run: terraform apply -auto-approve -input=false
         env:
+        ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ vars.MANAGEMENT_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
           TF_VAR_connectivity_subscription_id: ${{ vars.CONNECTIVITY_SUBSCRIPTION_ID }}

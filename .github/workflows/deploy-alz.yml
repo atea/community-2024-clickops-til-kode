@@ -44,6 +44,10 @@ jobs:
       - name: Apply changes
         run: terraform apply -auto-approve -input=false
         env:
+          ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ vars.MANAGEMENT_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
           TF_VAR_deploy_connectivity_resources: ${{ vars.DEPLOY_CONNECTIVITY_RESOURCES }}
           TF_VAR_deploy_identity_resources: ${{ vars.DEPLOY_IDENTITY_RESOURCES }}
           TF_VAR_deploy_management_resources: ${{ vars.DEPLOY_MANAGEMENT_RESOURCES }}
