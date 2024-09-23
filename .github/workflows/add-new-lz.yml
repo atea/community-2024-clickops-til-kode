@@ -1,0 +1,65 @@
+name: 'Create PR for new landing zone'
+
+on:
+  issues:
+    types:
+      - labeled
+      - opened
+      - reopened
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+jobs:
+  create_pr:
+    name: Create PR for new landing zone
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository from GitHub
+      uses: actions/checkout@v4
+
+    - name: Parse issue
+      id: parse_issue
+      uses: GrantBirki/issue-template-parser@v7.0.3
+      with:
+        body: ${{ github.event.issue.body }}
+
+    - name: Format issue title for landing zone name
+      id: issue_title
+      run: |
+        export name=$(echo "${{ github.event.issue.title }}" | cut -d: -f2 | awk '{$1=$1};1' | tr " " "-")
+        echo title=$name >> $GITHUB_OUTPUT
+
+    - name: Create config
+      uses: 1arp/create-a-file-action@0.4.5
+      with:
+        path: 'landing-zones'
+        isAbsolutePath: false
+        file: ${{ steps.issue_title.outputs.title }}.yml
+        content: |
+          name: ${{ steps.issue_title.outputs.title }}
+          subscription_id: ${{ fromJson(steps.parse_issue.outputs.json).subscription_id }}
+          subscription_type: ${{ fromJson(steps.parse_issue.outputs.json).archetype }}
+          virtual_networks:
+            vnet1:
+              address_space:
+                - ${{ fromJson(steps.parse_issue.outputs.json).address_space }}
+              hub_peering_enabled: ${{ fromJson(steps.parse_issue.outputs.json).vnet_peering }}
+
+    - name: Create pull request
+      id: pr
+      uses: peter-evans/create-pull-request@v7
+      with:
+        title: 'Configure new landing zone: ${{ steps.issue_title.outputs.title }}'
+        body: ${{ github.event.issue.body }}
+        commit-message: 'Configure new landing zone: ${{ steps.issue_title.outputs.title }}'
+        committer: LandingzoneBot <community-demo@ateaacfs.onmicrosoft.com>
+        signoff: false
+        branch: lz-${{ steps.issue_title.outputs.title }}
+        assignees: sjovang
+        draft: false

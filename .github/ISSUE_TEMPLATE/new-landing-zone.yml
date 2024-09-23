@@ -32,6 +32,14 @@ body:
       required: true
 
   - type: input
+    id: subscription_id
+    attributes:
+      label: Subscription ID
+      description: Subscription ID for landing zone. Can be retrieved from the Azure Portal
+    validations:
+      required: true
+
+  - type: input
     id: address_space
     attributes:
       label: Address Space
@@ -40,13 +48,13 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: dropdown
     id: vnet_peering
     attributes:
       label: VNET peering
       description: Connect the virtual network to the hub
       options:
-      - label: true
-      - label: false
+      - "true"
+      - "false"
     validations:
       required: true
