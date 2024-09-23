@@ -26,7 +26,7 @@ body:
       options:
         - corp
         - online
-        - private
+        - secure
         - arc
     validations:
       required: true
