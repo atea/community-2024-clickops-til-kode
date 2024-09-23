@@ -13,8 +13,8 @@ permissions:
   issues: read
 
 jobs:
-  if: github.event.label.name == 'landingzone'
   create_pr:
+    if: github.event.label.name == 'landingzone'
     name: Create PR for new landing zone
     runs-on: ubuntu-latest
 
