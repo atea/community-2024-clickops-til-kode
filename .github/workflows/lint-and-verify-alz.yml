@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - infra/azure-landing-zones/**
-      - infra/subscription-vending-machine/**
 
   workflow_dispatch:
 
@@ -19,6 +18,11 @@ jobs:
     name: 'Lint and verify'
     runs-on: ubuntu-latest
     environment: demo
+
+    defaults:
+      run:
+        working-directory: ./infra/azure-landing-zones
+        shell: bash
 
     steps:
       - name: Checkout repository from GitHub
