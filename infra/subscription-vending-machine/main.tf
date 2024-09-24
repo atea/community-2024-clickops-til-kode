@@ -27,6 +27,32 @@ module "lz_vending" {
   subscription_management_group_association_enabled = true
   subscription_management_group_id                  = "ac24-${each.value.subscription_type}"
 
+  budget_enabled = try(each.value.budget_amount, false)
+  budgets = {
+    budget1 = {
+      amount            = try(each.value.budget_amount, 1000)
+      time_grain        = "Monthly"
+      time_period_start = "2024-01-01T00:00:00Z"
+      time_period_end   = "2027-12-31T23:59:59Z"
+      notifications = {
+        eightypercent = {
+          enabled        = true
+          operator       = "GreaterThan"
+          threshold      = 80
+          threshold_type = "Actual"
+          contact_emails = coalesce(try(each.value.budget_notification_emails, null), ["trond.sjovang@atea.no"])
+        }
+        budgetexceeded = {
+          enabled        = true
+          operator       = "GreaterThan"
+          threshold      = 100
+          threshold_type = "Forecasted"
+          contact_roles  = ["Owner"]
+        }
+      }
+    }
+  }
+
   virtual_network_enabled = true
   virtual_networks = {
     vnet1 = {
