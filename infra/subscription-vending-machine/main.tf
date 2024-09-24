@@ -13,6 +13,12 @@ locals {
   }
 }
 
+resource "azuread_group" "owner" {
+  for_each         = local.landing_zone_data_map
+  display_name     = "LZ-${each.value.name}-Owner"
+  security_enabled = true
+}
+
 module "lz_vending" {
   source            = "Azure/lz-vending/azurerm"
   version           = "= 4.1.3"
@@ -26,6 +32,15 @@ module "lz_vending" {
   subscription_display_name                         = each.value.name
   subscription_management_group_association_enabled = true
   subscription_management_group_id                  = "ac24-${each.value.subscription_type}"
+
+  role_assignment_enabled = true
+  role_assignments = {
+    owner_user_sub = {
+      principal_id   = azuread_group.owner["${each.value.name}.yaml"].object_id
+      definition     = "Owner"
+      relative_scope = ""
+    }
+  }
 
   virtual_network_enabled = true
   virtual_networks = {
