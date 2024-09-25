@@ -32,7 +32,7 @@ module "naming" {
 }
 
 resource "azurerm_resource_group" "this" {
-  location = "westeurope"
+  location = "norwayeast"
   name     = module.naming.resource_group.name_unique
 }
 
@@ -59,7 +59,7 @@ module "test" {
   node_pools = {
     workload = {
       name                 = "workload"
-      vm_size              = "Standard_D2d_v5"
+      vm_size              = "Standard_B2ms"
       orchestrator_version = "1.28"
       max_count            = 1
       min_count            = 1
@@ -68,7 +68,7 @@ module "test" {
     },
     ingress = {
       name                 = "ingress"
-      vm_size              = "Standard_D2d_v5"
+      vm_size              = "Standard_B2ms"
       orchestrator_version = "1.28"
       max_count            = 1
       min_count            = 1
