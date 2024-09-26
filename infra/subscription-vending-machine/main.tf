@@ -35,6 +35,10 @@ module "lz_vending" {
       resource_group_name     = "rg-${each.value.name}-networking"
       hub_peering_enabled     = each.value.virtual_networks.vnet1.hub_peering_enabled
       hub_network_resource_id = data.azurerm_virtual_network.hub.id
+      resource_group_tags = {
+        costcenter = "platform"
+        owner      = "community-demo@ateaacfs.onmicrosoft.com"
+      }
     }
   }
 }

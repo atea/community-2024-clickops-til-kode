@@ -1,0 +1,15 @@
+{
+    "extend_es_root": {
+        "policy_assignments": [],
+        "policy_definitions": [
+            "Enforce-RG-Tags"
+        ],
+        "policy_set_definitions": [
+            "Enforce-Mandatory-Tags"
+        ],
+        "role_definitions": [],
+        "archetype_config": {
+            "access_control": {}
+        }
+    }
+}
