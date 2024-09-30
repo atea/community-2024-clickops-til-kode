@@ -30,7 +30,7 @@ locals {
               }
             }
             azure_firewall = {
-              enabled = false
+              enabled = true
               config = {
                 address_prefix                = "10.42.1.0/24"
                 enable_dns_proxy              = true
