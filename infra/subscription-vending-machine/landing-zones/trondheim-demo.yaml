@@ -1,0 +1,8 @@
+name: trondheim-demo
+subscription_id: 9c766074-52c5-41a8-9fa6-6d0c72b3efa1
+subscription_type: arc
+virtual_networks:
+  vnet1:
+    address_space:
+      - 10.10.10.0/24
+    hub_peering_enabled: true
