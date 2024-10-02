@@ -1,4 +1,4 @@
-module "naming" {
+/* module "naming" {
   source  = "Azure/naming/azurerm"
   version = "~> 0.4"
   suffix  = [var.root_id]
@@ -78,4 +78,4 @@ resource "azurerm_network_manager_deployment" "connectivity" {
   configuration_ids = [
     azurerm_network_manager_connectivity_configuration.hub_spoke.id
   ]
-}
+} */

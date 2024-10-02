@@ -8,10 +8,10 @@
     "notScopes": [],
     "parameters": {
       "EnforceRGTags-costcenter": {
-        "Value": "costcenter"
+        "value": "costcenter"
       },
       "EnforceRGTags-owner": {
-        "Value": "owner"
+        "value": "owner"
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Mandatory-Tags",
