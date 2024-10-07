@@ -27,12 +27,12 @@ module "lz_vending" {
   subscription_management_group_association_enabled = true
   subscription_management_group_id                  = "ac24-${each.value.subscription_type}"
 
-  budget_enabled = try(each.value.budget_amount, false)
+  budget_enabled = true
   budgets = {
     budget1 = {
       amount            = try(each.value.budget_amount, 1000)
       time_grain        = "Monthly"
-      time_period_start = "2024-01-01T00:00:00Z"
+      time_period_start = formatdate("YYYY-MM-'01T00:00:00'Z", timestamp())
       time_period_end   = "2027-12-31T23:59:59Z"
       notifications = {
         eightypercent = {
