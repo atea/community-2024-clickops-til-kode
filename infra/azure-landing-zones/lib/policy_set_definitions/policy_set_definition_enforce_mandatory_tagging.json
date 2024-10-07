@@ -1,0 +1,47 @@
+{
+  "name": "Enforce-Mandatory-Tags",
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "scope": null,
+  "properties": {
+    "policyType": "Custom",
+    "displayName": "Ensure mandatory tagging is applied to Resource Groups",
+    "description": "Resource Group mandatory tag policy set",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {
+      "EnforceRGTags-costcenter": {
+        "type": "String",
+        "metadata": {
+          "displayName": "costcenter",
+          "description": "Specify the costcenter of the Resource Group"
+        }
+      },
+      "EnforceRGTags-owner": {
+        "type": "String",
+        "metadata": {
+          "displayName": "owner",
+          "description": "Specify who owns the Resource Group"
+        }
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "Resource groups must have mandatory tagging applied",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-RG-Tags",
+        "parameters": {
+          "costcenter": {
+            "value": "[parameters('EnforceRGTags-costcenter')]"
+          },
+          "owner": {
+            "value": "[parameters('EnforceRGTags-owner')]"
+          }
+        },
+        "groupNames": []
+      }
+    ],
+    "policyDefinitionGroups": null
+  }
+}
