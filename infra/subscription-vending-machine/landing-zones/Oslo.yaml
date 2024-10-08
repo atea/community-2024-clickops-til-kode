@@ -1,0 +1,9 @@
+name: Oslo
+subscription_id: 46f6ba9d-e22b-4af8-961c-ecf796004379
+subscription_type: online
+budget_amount: 
+virtual_networks:
+  vnet1:
+    address_space:
+      - 10.123.0.0/24
+    hub_peering_enabled: true
