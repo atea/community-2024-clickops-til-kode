@@ -44,7 +44,7 @@ jobs:
           name: ${{ steps.issue_title.outputs.title }}
           subscription_id: ${{ fromJson(steps.parse_issue.outputs.json).subscription_id }}
           subscription_type: ${{ fromJson(steps.parse_issue.outputs.json).archetype }}
-          budget_amount: ${{ fromJson(steps.parse_issue.outputs.json).budget_amount }}
+          budget_amount: ${{ fromJson(steps.parse_issue.outputs.json).budget }}
           virtual_networks:
             vnet1:
               address_space:
