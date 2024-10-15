@@ -39,6 +39,8 @@ module "lz_vending" {
       principal_id   = azuread_group.owner["${each.value.name}.yaml"].object_id
       definition     = "Owner"
       relative_scope = ""
+    }
+  }
 
   budget_enabled = true
   budgets = {
