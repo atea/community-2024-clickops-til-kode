@@ -1,0 +1,57 @@
+{
+    "name": "Enforce-RG-Tags",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+    "properties": {
+        "displayName": "Resource groups must have mandatory tagging applied",
+        "policyType": "Custom",
+        "mode": "All",
+        "description": "Enforce mandatory 'costcenter' and 'owner' tags on Resource Groups",
+        "metadata": {
+            "version": "1.0.0",
+            "category": "Tags"
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                    },
+                    {
+                        "anyof": [
+                            {
+                                "field": "[concat('tags[', parameters('costcenter'), ']')]",
+                                "exists": "false"
+                            },
+                            {
+                                "field": "[concat('tags[', parameters('owner'), ']')]",
+                                "exists": "false"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        },
+        "parameters": {
+            "costcenter": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "costcenter",
+                    "description": "Specify the costcenter of the Resource Group'"
+                }
+            },
+            "owner": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "owner",
+                    "description": "Specify who owns the Resource Group"
+                }
+            }
+        }
+    }
+}

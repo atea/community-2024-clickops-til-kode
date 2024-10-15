@@ -40,6 +40,14 @@ body:
       required: true
 
   - type: input
+    id: budget_amount
+    attributes:
+      label: Budget
+      description: Set a monthly budget amount for subscription
+    validations:
+      required: true
+
+  - type: input
     id: address_space
     attributes:
       label: Address Space

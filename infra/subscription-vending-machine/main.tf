@@ -39,6 +39,30 @@ module "lz_vending" {
       principal_id   = azuread_group.owner["${each.value.name}.yaml"].object_id
       definition     = "Owner"
       relative_scope = ""
+
+  budget_enabled = true
+  budgets = {
+    budget1 = {
+      amount            = try(each.value.budget_amount, 1000)
+      time_grain        = "Monthly"
+      time_period_start = formatdate("YYYY-MM-'01T00:00:00'Z", timestamp())
+      time_period_end   = "2027-12-31T23:59:59Z"
+      notifications = {
+        eightypercent = {
+          enabled        = true
+          operator       = "GreaterThan"
+          threshold      = 80
+          threshold_type = "Actual"
+          contact_emails = coalesce(try(each.value.budget_notification_emails, null), ["trond.sjovang@atea.no"])
+        }
+        budgetexceeded = {
+          enabled        = true
+          operator       = "GreaterThan"
+          threshold      = 100
+          threshold_type = "Forecasted"
+          contact_roles  = ["Owner"]
+        }
+      }
     }
   }
 
@@ -50,6 +74,10 @@ module "lz_vending" {
       resource_group_name     = "rg-${each.value.name}-networking"
       hub_peering_enabled     = each.value.virtual_networks.vnet1.hub_peering_enabled
       hub_network_resource_id = data.azurerm_virtual_network.hub.id
+      resource_group_tags = {
+        costcenter = "platform"
+        owner      = "community-demo@ateaacfs.onmicrosoft.com"
+      }
     }
   }
 }
