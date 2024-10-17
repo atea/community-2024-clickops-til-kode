@@ -15,7 +15,7 @@ locals {
 
 module "lz_vending" {
   source            = "Azure/lz-vending/azurerm"
-  version           = "= 4.1.3"
+  version           = "4.1.4"
   disable_telemetry = true
 
   for_each = local.landing_zone_data_map
