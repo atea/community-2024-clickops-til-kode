@@ -8,7 +8,7 @@ locals {
           config = {
             address_space                = ["10.42.0.0/22"]
             location                     = "westeurope"
-            link_to_ddos_protection_plan = true
+            link_to_ddos_protection_plan = false
             dns_servers                  = []
             bgp_community                = ""
             subnets                      = []
@@ -30,7 +30,7 @@ locals {
               }
             }
             azure_firewall = {
-              enabled = true
+              enabled = false
               config = {
                 address_prefix                = "10.42.1.0/24"
                 enable_dns_proxy              = true
@@ -55,7 +55,7 @@ locals {
       ]
       vwan_hub_networks = []
       ddos_protection_plan = {
-        enabled = true
+        enabled = false
         config = {
           location = var.connectivity_resources_location
         }
