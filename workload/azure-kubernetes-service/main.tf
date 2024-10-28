@@ -149,7 +149,7 @@ module "network" {
     private_link = {
       name = "sn-private-link"
       address_prefixes = [
-        cidrsubnet(each.value.address_space, 8, 8)
+        cidrsubnet(each.value.address_space, 8, 1)
       ]
       nat_gateway = {
         id = module.nat_gateway[each.key].resource_id
