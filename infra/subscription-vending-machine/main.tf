@@ -82,4 +82,12 @@ module "lz_vending" {
       }
     }
   }
+
+  umi_enabled             = true
+  umi_name                = "id-${each.value.name}"
+  umi_resource_group_name = "rg-${each.value.name}-identity"
+  umi_resource_group_tags = {
+    costcenter = "platform"
+    owner      = "community-demo@ateaacfs.onmicrosoft.com"
+  }
 }
