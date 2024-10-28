@@ -82,6 +82,12 @@ module "nat_gateway" {
 
   enable_telemetry = var.enable_telemetry
 
+  public_ips = {
+    pip-1 = {
+      name = "ip-nat-gw-1"
+    }
+  }
+
   tags = merge(local.tags, {
     environment = each.key
   })
@@ -139,6 +145,7 @@ module "network" {
       address_prefixes = [
         cidrsubnet(each.value.address_space, 8, 0)
       ]
+      default_outbound_access_enabled = true
       nat_gateway = {
         id = module.nat_gateway[each.key].resource_id
       }
@@ -151,6 +158,7 @@ module "network" {
       address_prefixes = [
         cidrsubnet(each.value.address_space, 8, 1)
       ]
+      default_outbound_access_enabled = true
       nat_gateway = {
         id = module.nat_gateway[each.key].resource_id
       }
