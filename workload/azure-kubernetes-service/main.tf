@@ -82,6 +82,12 @@ module "nat_gateway" {
 
   enable_telemetry = var.enable_telemetry
 
+  public_ips = {
+    pip-1 = {
+      name = "ip-nat-gw-1"
+    }
+  }
+
   tags = merge(local.tags, {
     environment = each.key
   })
