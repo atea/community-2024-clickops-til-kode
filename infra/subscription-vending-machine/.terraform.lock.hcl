@@ -42,22 +42,22 @@ provider "registry.terraform.io/hashicorp/azuread" {
 }
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version     = "3.116.0"
-  constraints = "~> 3.0, >= 3.7.0"
+  version     = "4.7.0"
+  constraints = ">= 3.7.0, ~> 4.7"
   hashes = [
-    "h1:BCR3NIorFSvGG3v/+JOiiw3VM4PkChLO4m84wzD9NDo=",
-    "zh:02b6606aff025fc2a962b3e568e000300abe959adac987183c24dac8eb057f4d",
-    "zh:2a23a8ce24ff9e885925ffee0c3ea7eadba7a702541d05869275778aa47bdea7",
-    "zh:57d10746384baeca4d5c56e88872727cdc150f437b8c5e14f0542127f7475e24",
-    "zh:59e3ebde1a2e1e094c671e179f231ead60684390dbf02d2b1b7fe67a228daa1a",
-    "zh:5f1f5c7d09efa2ee8ddf21bd9efbbf8286f6e90047556bef305c062fa0ac5880",
-    "zh:a40646aee3c9907276dab926e6123a8d70b1e56174836d4c59a9992034f88d70",
-    "zh:c21d40461bc5836cf56ad3d93d2fc47f61138574a55e972ad5ff1cb73bab66dc",
-    "zh:c56fb91a5ae66153ba0f737a26da1b3d4f88fdef7d41c63e06c5772d93b26953",
-    "zh:d1e60e85f51d12fc150aeab8e31d3f18f859c32f927f99deb5b74cb1e10087aa",
-    "zh:ed35e727e7d79e687cd3d148f52b442961ede286e7c5b4da1dcd9f0128009466",
+    "h1:gCTgXiVJIPfPmeMtWHEkzcuzmJzBBjCo5FF0tIShiPc=",
+    "zh:220994020593f3bc3e8d73bfaa98d7f0abccea2f51f76029bb9f6dc2a5bb3436",
+    "zh:2cdfb75f3b375410da63deb17b7dadec1e3ddfac7e2f5168624a4fc51dd3e177",
+    "zh:37ee931a839228c4a74fa96cd053b8e0c3de4637cc85fba963fccaf3d67120a4",
+    "zh:4b12d06e4b782af96df2cfd3445c330c8553f5ac9cf73b2ab045004cf02edbe5",
+    "zh:7c80ee772836ddf66087a688d50ce404eeaa4a6e72a5f8f5f3f3232068a0c0ca",
+    "zh:826acb1bf9b335ca6992796bfd3898b15d0f99a888f02d9c97b7771c31765456",
+    "zh:83dea535e067547215595141ffd954aab36dd67f646a53a12dc811557fb38acd",
+    "zh:8d5d08e4367f679b877eec33a9e0062d66de0aedd557412ab88b696bdf08c7ef",
+    "zh:c2c4efbc861248d89620db3e36370ce3053d886930db38d87c6e24a73ca5017e",
+    "zh:d7e568f956c6e2a764b0d8f465e5c971cc6edab58bb8232f63ea423c459ffc85",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
-    "zh:f6d2a4e7c58f44e7d04a4a9c73f35ed452f412c97c85def68c4b52814cbe03ab",
+    "zh:f866502c6a996e5c2cf42b262a5e5c35e13f3bcb40f364f90c9f4e8e64db733d",
   ]
 }
 
