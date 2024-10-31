@@ -214,6 +214,15 @@ module "azure_kubernetes_cluster" {
       os_sku               = "Ubuntu"
       mode                 = "User"
     }
+    bergen = {
+      name                 = "bergen"
+      vm_size              = "Standard_D2s_v5"
+      orchestrator_version = "1.28"
+      min_count            = 2
+      max_count            = 4
+      os_sku               = "Ubuntu"
+      mode                 = "User"
+    }
   }
 
   rbac_aad_admin_group_object_ids = [
