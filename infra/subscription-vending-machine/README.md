@@ -20,6 +20,7 @@ The following requirements are needed by this module:
 
 The following resources are used by this module:
 
+- [azuread_group.owner](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
 - [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/virtual_network) (data source)
 
 <!-- markdownlint-disable MD013 -->
