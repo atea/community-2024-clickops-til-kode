@@ -71,11 +71,12 @@ module "lz_vending" {
   virtual_network_enabled = true
   virtual_networks = {
     vnet1 = {
-      name                    = "vnet-${each.value.name}"
-      address_space           = each.value.virtual_networks.vnet1.address_space
-      resource_group_name     = "rg-${each.value.name}-networking"
-      hub_peering_enabled     = each.value.virtual_networks.vnet1.hub_peering_enabled
-      hub_network_resource_id = data.azurerm_virtual_network.hub.id
+      name                        = "vnet-${each.value.name}"
+      address_space               = each.value.virtual_networks.vnet1.address_space
+      resource_group_name         = "rg-${each.value.name}-networking"
+      hub_peering_enabled         = each.value.virtual_networks.vnet1.hub_peering_enabled
+      hub_network_resource_id     = data.azurerm_virtual_network.hub.id
+      resource_group_lock_enabled = false
       resource_group_tags = {
         costcenter = "platform"
         owner      = "community-demo@ateaacfs.onmicrosoft.com"
@@ -83,9 +84,10 @@ module "lz_vending" {
     }
   }
 
-  umi_enabled             = true
-  umi_name                = "id-${each.value.name}"
-  umi_resource_group_name = "rg-${each.value.name}-identity"
+  umi_enabled                     = true
+  umi_name                        = "id-${each.value.name}"
+  umi_resource_group_name         = "rg-${each.value.name}-identity"
+  umi_resource_group_lock_enabled = false
   umi_resource_group_tags = {
     costcenter = "platform"
     owner      = "community-demo@ateaacfs.onmicrosoft.com"
