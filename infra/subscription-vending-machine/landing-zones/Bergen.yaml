@@ -1,9 +1,0 @@
-name: Bergen
-subscription_id: 224792c3-bd44-486f-9f67-fcba7c3f5a44
-subscription_type: online
-budget_amount: 5000
-virtual_networks:
-  vnet1:
-    address_space:
-      - 10.142.0.0/24
-    hub_peering_enabled: true

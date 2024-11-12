@@ -1,9 +1,0 @@
-name: Kristiansand
-subscription_id: 7617cb7d-23da-4fc1-adc2-dae88425cfa1
-subscription_type: online
-budget_amount: 5000
-virtual_networks:
-  vnet1:
-    address_space:
-      - 10.128.0.0/24
-    hub_peering_enabled: true
