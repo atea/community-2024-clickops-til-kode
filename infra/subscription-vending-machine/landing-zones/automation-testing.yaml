@@ -5,5 +5,5 @@ subscription_type: secure
 virtual_networks:
   vnet1:
     address_space:
-      - 10.42.69.0/24
+      - 10.128.0.0/24
     hub_peering_enabled: true

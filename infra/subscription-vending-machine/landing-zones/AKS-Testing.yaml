@@ -4,5 +4,5 @@ subscription_type: online
 virtual_networks:
   vnet1:
     address_space:
-      - 192.168.0.0/22
+      - 10.128.1.0/24
     hub_peering_enabled: false
