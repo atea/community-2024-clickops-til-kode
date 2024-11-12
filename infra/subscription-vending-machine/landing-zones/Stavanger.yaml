@@ -1,9 +1,0 @@
-name: Stavanger
-subscription_id: bae8b492-978a-4bb8-9da7-54f0d7c862ed
-subscription_type: online
-budget_amount: 5000
-virtual_networks:
-  vnet1:
-    address_space:
-      - 10.128.64.0/24
-    hub_peering_enabled: true

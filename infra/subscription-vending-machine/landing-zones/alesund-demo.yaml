@@ -1,8 +1,0 @@
-name: alesund-demo
-subscription_id: 55099e32-27e7-4537-8a06-773a70155c7b
-subscription_type: secure
-virtual_networks:
-  vnet1:
-    address_space:
-      - 10.43.0.0/24
-    hub_peering_enabled: true
