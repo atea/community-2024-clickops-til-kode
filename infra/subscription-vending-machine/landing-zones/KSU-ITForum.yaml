@@ -1,9 +1,0 @@
-name: KSU-ITForum
-subscription_id: 55099e32-27e7-4537-8a06-773a70155c7b
-subscription_type: online
-budget_amount: 10000
-virtual_networks:
-  vnet1:
-    address_space:
-      - 10.128.12.0/24
-    hub_peering_enabled: true
